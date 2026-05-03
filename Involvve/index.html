@@ -3,13 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Involvve — Never go to events alone again.</title>
+<title>Involvve</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./styles/css/styles.css">
+<link rel="icon" type="image/png" href="./img/favicon.ico">
+<link rel="icon" type="image/png" href="./img/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="./img/favicon-16x16.png" sizes="16x16">
 </head>
 <body>
-
+ 
+<!-- NAV -->
 <nav>
   <div class="logo">Involvve</div>
   <div class="nav-right">
@@ -17,7 +21,7 @@
     <a href="#waitlist" class="nav-cta">Join waitlist</a>
   </div>
 </nav>
-
+ 
 <!-- HERO -->
 <section>
   <div class="hero">
@@ -61,9 +65,9 @@
     </div>
   </div>
 </section>
-
+ 
 <div class="divider"></div>
-
+ 
 <!-- HOW IT WORKS -->
 <section id="how">
   <div class="section-label">How it works</div>
@@ -87,9 +91,9 @@
     </div>
   </div>
 </section>
-
+ 
 <div class="divider"></div>
-
+ 
 <!-- PROBLEM -->
 <section>
   <div class="problem-grid">
@@ -118,9 +122,9 @@
     </div>
   </div>
 </section>
-
+ 
 <div class="divider"></div>
-
+ 
 <!-- SOLUTION -->
 <section>
   <div class="section-label">The solution</div>
@@ -144,41 +148,130 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- FINAL CTA -->
 <div class="final-cta" id="waitlist">
   <div class="section-label">Early access</div>
   <div class="section-title" style="text-align:center;">Your next night out<br>is already planned.</div>
   <p>Be first to know when Involvve launches in your city.</p>
-  <div class="email-form">
-    <input type="email" class="email-input" placeholder="your@email.com">
-    <button class="email-submit" onclick="handleSubmit(this)">Get early access</button>
+ 
+  <div class="newsletter-form-container">
+    <form class="newsletter-form" action="https://app.loops.so/api/newsletter-form/cmoq4zi9k2ct00i1f2b4hpqic" method="POST">
+      <input class="newsletter-form-input" placeholder="your@email.com" required type="email" name="newsletter-form-input">
+      <button type="submit" class="newsletter-form-button">Get early access</button>
+      <button type="button" class="newsletter-loading-button">Please wait...</button>
+    </form>
+    <div class="newsletter-success" style="display:none;">
+      <p class="newsletter-success-message">✓ You're on the list. We'll be in touch!</p>
+    </div>
+    <div class="newsletter-error" style="display:none;">
+      <p class="newsletter-error-message">Oops! Something went wrong, please try again.</p>
+    </div>
+    <button class="newsletter-back-button" type="button" style="display:none;">← Back</button>
   </div>
+ 
   <div class="email-note">No spam. No pressure. Unsubscribe any time.</div>
 </div>
-
+ 
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">Involvve</div>
   <div class="footer-text">© 2025 Involvve. All rights reserved.</div>
 </footer>
-
+ 
 <script>
   function toggleTheme() {
     const html = document.documentElement;
     html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
   }
-  function handleSubmit(btn) {
-    const input = btn.previousElementSibling;
-    if (!input.value || !input.value.includes('@')) {
-      input.style.borderColor = '#c0392b';
-      setTimeout(() => input.style.borderColor = '', 1200);
-      return;
+ 
+  // Loops form logic
+  function submitHandler(event) {
+    event.preventDefault();
+    var container = event.target.parentNode;
+    var form = container.querySelector(".newsletter-form");
+    var formInput = container.querySelector(".newsletter-form-input");
+    var success = container.querySelector(".newsletter-success");
+    var errorContainer = container.querySelector(".newsletter-error");
+    var errorMessage = container.querySelector(".newsletter-error-message");
+    var backButton = container.querySelector(".newsletter-back-button");
+    var submitButton = container.querySelector(".newsletter-form-button");
+    var loadingButton = container.querySelector(".newsletter-loading-button");
+ 
+    const rateLimit = () => {
+      errorContainer.style.display = "flex";
+      errorMessage.innerText = "Too many signups, please try again in a little while";
+      submitButton.style.display = "none";
+      formInput.style.display = "none";
+      backButton.style.display = "block";
+    };
+ 
+    var time = new Date();
+    var timestamp = time.valueOf();
+    var previousTimestamp = localStorage.getItem("loops-form-timestamp");
+    if (previousTimestamp && Number(previousTimestamp) + 60000 > timestamp) {
+      rateLimit(); return;
     }
-    btn.textContent = '✓ You\'re on the list';
-    btn.style.background = '#2d6142';
-    btn.disabled = true;
-    input.disabled = true;
+    localStorage.setItem("loops-form-timestamp", timestamp);
+ 
+    submitButton.style.display = "none";
+    loadingButton.style.display = "flex";
+ 
+    var formBody = "userGroup=&mailingLists=&email=" + encodeURIComponent(formInput.value);
+ 
+    fetch(event.target.action, {
+      method: "POST",
+      body: formBody,
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    })
+      .then((res) => [res.ok, res.json(), res])
+      .then(([ok, dataPromise, res]) => {
+        if (ok) {
+          success.style.display = "flex";
+          form.reset();
+        } else {
+          dataPromise.then(data => {
+            errorContainer.style.display = "flex";
+            errorMessage.innerText = data.message ? data.message : res.statusText;
+          });
+        }
+      })
+      .catch(error => {
+        if (error.message === "Failed to fetch") { rateLimit(); return; }
+        errorContainer.style.display = "flex";
+        if (error.message) errorMessage.innerText = error.message;
+        localStorage.setItem("loops-form-timestamp", '');
+      })
+      .finally(() => {
+        formInput.style.display = "none";
+        loadingButton.style.display = "none";
+        backButton.style.display = "block";
+      });
+  }
+ 
+  function resetFormHandler(event) {
+    var container = event.target.parentNode;
+    var formInput = container.querySelector(".newsletter-form-input");
+    var success = container.querySelector(".newsletter-success");
+    var errorContainer = container.querySelector(".newsletter-error");
+    var errorMessage = container.querySelector(".newsletter-error-message");
+    var backButton = container.querySelector(".newsletter-back-button");
+    var submitButton = container.querySelector(".newsletter-form-button");
+    success.style.display = "none";
+    errorContainer.style.display = "none";
+    errorMessage.innerText = "Oops! Something went wrong, please try again";
+    backButton.style.display = "none";
+    formInput.style.display = "flex";
+    submitButton.style.display = "flex";
+  }
+ 
+  var formContainers = document.getElementsByClassName("newsletter-form-container");
+  for (var i = 0; i < formContainers.length; i++) {
+    var formContainer = formContainers[i];
+    if (formContainer.classList.contains('newsletter-handlers-added')) continue;
+    formContainer.querySelector(".newsletter-form").addEventListener("submit", submitHandler);
+    formContainer.querySelector(".newsletter-back-button").addEventListener("click", resetFormHandler);
+    formContainer.classList.add("newsletter-handlers-added");
   }
 </script>
 </body>
