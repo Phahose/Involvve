@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Involvve — Never go to events alone again.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles/css/styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="logo">Involvve</div>
+  <div class="nav-right">
+    <button class="theme-toggle" onclick="toggleTheme()">Toggle theme</button>
+    <a href="#waitlist" class="nav-cta">Join waitlist</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section>
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-label">Now in early access</div>
+      <h1>Never go to events <em>alone</em> again.</h1>
+      <p>Join a small group going to the same event in seconds. No awkward planning. Just show up.</p>
+      <div class="hero-btns">
+        <a href="#waitlist" class="btn-primary">Join the waitlist</a>
+        <a href="#how" class="btn-secondary">See how it works</a>
+      </div>
+    </div>
+    <div class="hero-right phone-wrap">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-tag">Tonight</div>
+        <div class="phone-event">Friday Night Jazz</div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+          <div class="phone-avatars">
+            <div class="avatar"></div>
+            <div class="avatar"></div>
+            <div class="avatar"></div>
+            <div class="avatar"></div>
+          </div>
+          <span style="font-size:0.78rem;color:var(--text-muted);margin-left:10px;">4 people going</span>
+        </div>
+        <div class="phone-row">
+          <span class="phone-row-label">Spots left</span>
+          <span class="phone-badge">1 spot left</span>
+        </div>
+        <div class="phone-row">
+          <span class="phone-row-label">Time</span>
+          <span class="phone-row-val">8:30 PM</span>
+        </div>
+        <div class="phone-row">
+          <span class="phone-row-label">Meeting at</span>
+          <span class="phone-row-val">Main entrance</span>
+        </div>
+        <button class="phone-join">Join group →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="section-label">How it works</div>
+  <div class="section-title">Three steps. That's it.</div>
+  <p class="section-sub">No long setup. No group chats. Just pick an event and go.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Open the app</h3>
+      <p>Browse events happening near you — concerts, markets, shows, restaurants. Pick what you're interested in.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Join a small group</h3>
+      <p>See who else is going. Join a group of 2–5 people already heading to the same event.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Show up together</h3>
+      <p>Meet at the event. No pressure, no planning. Just a good night out with new people.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROBLEM -->
+<section>
+  <div class="problem-grid">
+    <div>
+      <div class="section-label">The problem</div>
+      <div class="problem-quote">You want to go… but <em>not alone.</em></div>
+      <p style="color:var(--text-muted);font-size:0.95rem;max-width:380px;">Sound familiar? You're not the only one sitting this one out for no good reason.</p>
+    </div>
+    <div class="bullets">
+      <div class="bullet">
+        <div class="bullet-dot"></div>
+        <span>No one in your circle is free</span>
+      </div>
+      <div class="bullet">
+        <div class="bullet-dot"></div>
+        <span>You don't want to show up alone</span>
+      </div>
+      <div class="bullet">
+        <div class="bullet-dot"></div>
+        <span>Coordinating plans feels like too much work</span>
+      </div>
+      <div class="bullet">
+        <div class="bullet-dot"></div>
+        <span>So you just… stay home</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SOLUTION -->
+<section>
+  <div class="section-label">The solution</div>
+  <div class="section-title">We make it simple.</div>
+  <p class="section-sub">Involvve removes every obstacle between you and a good night out.</p>
+  <div class="solution-grid">
+    <div class="sol-card">
+      <div class="step-num">1</div>
+      <h3>Small groups, already going</h3>
+      <p>You're not creating a plan. You're joining one. The group is already formed and heading to the same event.</p>
+    </div>
+    <div class="sol-card">
+      <div class="step-num">2</div>
+      <h3>Same event, same plan</h3>
+      <p>Everyone is going to the exact same thing. No compromises. No scheduling around 5 calendars.</p>
+    </div>
+    <div class="sol-card">
+      <div class="step-num">3</div>
+      <h3>No chatting, no overthinking</h3>
+      <p>No group chat. No back and forth. Tap join, see you there. It really is that low-effort.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<div class="final-cta" id="waitlist">
+  <div class="section-label">Early access</div>
+  <div class="section-title" style="text-align:center;">Your next night out<br>is already planned.</div>
+  <p>Be first to know when Involvve launches in your city.</p>
+  <div class="email-form">
+    <input type="email" class="email-input" placeholder="your@email.com">
+    <button class="email-submit" onclick="handleSubmit(this)">Get early access</button>
+  </div>
+  <div class="email-note">No spam. No pressure. Unsubscribe any time.</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Involvve</div>
+  <div class="footer-text">© 2025 Involvve. All rights reserved.</div>
+</footer>
+
+<script>
+  function toggleTheme() {
+    const html = document.documentElement;
+    html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  }
+  function handleSubmit(btn) {
+    const input = btn.previousElementSibling;
+    if (!input.value || !input.value.includes('@')) {
+      input.style.borderColor = '#c0392b';
+      setTimeout(() => input.style.borderColor = '', 1200);
+      return;
+    }
+    btn.textContent = '✓ You\'re on the list';
+    btn.style.background = '#2d6142';
+    btn.disabled = true;
+    input.disabled = true;
+  }
+</script>
+</body>
+</html>
