@@ -134,7 +134,7 @@
     display: flex; justify-content: center; align-items: center;
   }
   .phone {
-    width: 220px;
+    width: 250px;
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 28px;
