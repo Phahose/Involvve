@@ -1,0 +1,50 @@
+{
+  "expo": {
+    "name": "Involvve",
+    "slug": "involvve",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0D1F17"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.involvve.app",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Involvve uses your location to show activities happening near you.",
+        "NSLocationAlwaysUsageDescription": "Involvve uses your location to show activities happening near you."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0D1F17"
+      },
+      "package": "com.involvve.app",
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-location",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/icon.png",
+          "color": "#2D6A4F"
+        }
+      ]
+    ],
+    "scheme": "involvve"
+  }
+}
