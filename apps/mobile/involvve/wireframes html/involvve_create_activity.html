@@ -1,0 +1,250 @@
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font-sans); }
+.wrap { padding: 1rem 0; display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+.step-label { font-size: 11px; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500; margin-bottom: 8px; text-align: center; }
+.phone { width: 270px; background: #0A1A12; border-radius: 36px; border: 0.5px solid #1B4332; overflow: hidden; display: flex; flex-direction: column; }
+.statusbar { padding: 10px 18px 4px; display: flex; justify-content: space-between; font-size: 9px; color: #52B788; font-weight: 500; }
+.topbar { padding: 10px 16px 8px; display: flex; justify-content: space-between; align-items: center; border-bottom: 0.5px solid #122318; }
+.topbar-title { font-size: 15px; font-weight: 500; color: #F0FAF3; }
+.screen { flex: 1; display: flex; flex-direction: column; padding: 14px 16px 20px; gap: 12px; overflow: hidden; }
+.input-group { display: flex; flex-direction: column; gap: 4px; }
+.input-label { font-size: 9px; color: #3D5A47; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500; }
+.input-field { background: #122318; border: 0.5px solid #1B4332; border-radius: 10px; padding: 10px 12px; font-size: 12px; color: #B7E4C7; display: flex; align-items: center; justify-content: space-between; }
+.input-placeholder { color: #3D5A47; }
+.input-value { color: #B7E4C7; }
+.divider { height: 0.5px; background: #1B4332; }
+.btn-primary { background: #2D6A4F; color: #D8F3DC; border: none; border-radius: 12px; padding: 13px; font-size: 13px; font-weight: 500; cursor: pointer; width: 100%; text-align: center; }
+.btn-ghost { background: transparent; color: #52B788; border: 0.5px solid #1B4332; border-radius: 12px; padding: 10px; font-size: 12px; font-weight: 500; cursor: pointer; width: 100%; text-align: center; }
+.category-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+.cat-pill { padding: 8px 10px; border-radius: 10px; font-size: 11px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 6px; border: 0.5px solid #1B4332; }
+.cat-active { background: #1B4332; color: #52B788; border-color: #2D6A4F; }
+.cat-inactive { background: #122318; color: #3D5A47; }
+.size-row { display: flex; gap: 6px; }
+.size-btn { flex: 1; padding: 8px; border-radius: 10px; font-size: 12px; font-weight: 500; text-align: center; cursor: pointer; border: 0.5px solid #1B4332; }
+.size-active { background: #2D6A4F; color: #D8F3DC; border-color: #2D6A4F; }
+.size-inactive { background: #122318; color: #3D5A47; }
+.media-upload { background: #122318; border: 0.5px dashed #2D6A4F; border-radius: 12px; height: 80px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+.tabbar { padding: 8px 0 10px; display: flex; justify-content: space-around; border-top: 0.5px solid #122318; background: #0A1A12; }
+.tab { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 9px; color: #1B4332; }
+.progress { display: flex; gap: 4px; margin-bottom: 2px; }
+.prog-dot { height: 3px; border-radius: 2px; flex: 1; }
+</style>
+
+<div class="wrap">
+
+  <!-- Step 1 — Basic Info -->
+  <div>
+    <div class="step-label">Step 1 — Basic info</div>
+    <div class="phone">
+      <div class="statusbar"><span>9:41</span><span>●●● WiFi ■</span></div>
+      <div class="topbar">
+        <div style="width:28px; height:28px; background:#122318; border-radius:8px; display:flex; align-items:center; justify-content:center; border:0.5px solid #1B4332;">
+          <i class="ti ti-x" style="font-size:14px; color:#52B788;" aria-hidden="true"></i>
+        </div>
+        <div class="topbar-title">Create activity</div>
+        <div style="font-size:11px; color:#3D5A47;">1 of 3</div>
+      </div>
+      <div class="screen">
+        <div class="progress">
+          <div class="prog-dot" style="background:#52B788;"></div>
+          <div class="prog-dot" style="background:#1B4332;"></div>
+          <div class="prog-dot" style="background:#1B4332;"></div>
+        </div>
+
+        <!-- Media upload -->
+        <div class="media-upload">
+          <i class="ti ti-photo" style="font-size:20px; color:#2D6A4F;" aria-hidden="true"></i>
+          <span style="font-size:10px; color:#52B788;">Add a photo</span>
+          <span style="font-size:9px; color:#3D5A47;">Optional — makes your activity stand out</span>
+        </div>
+
+        <!-- Title -->
+        <div class="input-group">
+          <div class="input-label">Activity title</div>
+          <div class="input-field">
+            <span class="input-value">Pickup Basketball @ Clareview</span>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="input-group">
+          <div class="input-label">Description (optional)</div>
+          <div class="input-field" style="min-height:56px; align-items:flex-start;">
+            <span class="input-placeholder">Tell people what to expect...</span>
+          </div>
+        </div>
+
+        <!-- Category -->
+        <div class="input-group">
+          <div class="input-label">Category</div>
+          <div class="category-grid">
+            <div class="cat-pill cat-active"><span>🏀</span><span>Sports & Fitness</span></div>
+            <div class="cat-pill cat-inactive"><span>🍽️</span><span>Food & Drink</span></div>
+            <div class="cat-pill cat-inactive"><span>🎵</span><span>Music</span></div>
+            <div class="cat-pill cat-inactive"><span>🌙</span><span>Nightlife</span></div>
+            <div class="cat-pill cat-inactive"><span>🌿</span><span>Outdoors</span></div>
+            <div class="cat-pill cat-inactive"><span>👥</span><span>Social</span></div>
+          </div>
+        </div>
+
+        <button class="btn-primary">Continue</button>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><i class="ti ti-home" style="font-size:18px;" aria-hidden="true"></i><span>Feed</span></div>
+        <div class="tab"><i class="ti ti-search" style="font-size:18px;" aria-hidden="true"></i><span>Explore</span></div>
+        <div class="tab"><i class="ti ti-calendar-event" style="font-size:18px;" aria-hidden="true"></i><span>My plans</span></div>
+        <div class="tab"><i class="ti ti-user" style="font-size:18px;" aria-hidden="true"></i><span>Profile</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 2 — Time & Location -->
+  <div>
+    <div class="step-label">Step 2 — Time & location</div>
+    <div class="phone">
+      <div class="statusbar"><span>9:41</span><span>●●● WiFi ■</span></div>
+      <div class="topbar">
+        <div style="width:28px; height:28px; background:#122318; border-radius:8px; display:flex; align-items:center; justify-content:center; border:0.5px solid #1B4332;">
+          <i class="ti ti-arrow-left" style="font-size:14px; color:#52B788;" aria-hidden="true"></i>
+        </div>
+        <div class="topbar-title">When & where</div>
+        <div style="font-size:11px; color:#3D5A47;">2 of 3</div>
+      </div>
+      <div class="screen">
+        <div class="progress">
+          <div class="prog-dot" style="background:#2D6A4F;"></div>
+          <div class="prog-dot" style="background:#52B788;"></div>
+          <div class="prog-dot" style="background:#1B4332;"></div>
+        </div>
+
+        <!-- Date -->
+        <div class="input-group">
+          <div class="input-label">Date</div>
+          <div class="input-field">
+            <span class="input-value">Tonight — Sunday May 10</span>
+            <i class="ti ti-calendar" style="font-size:13px; color:#52B788;" aria-hidden="true"></i>
+          </div>
+        </div>
+
+        <!-- Time -->
+        <div class="input-group">
+          <div class="input-label">Time</div>
+          <div class="input-field">
+            <span class="input-value">7:00 PM</span>
+            <i class="ti ti-clock" style="font-size:13px; color:#52B788;" aria-hidden="true"></i>
+          </div>
+        </div>
+
+        <!-- Location -->
+        <div class="input-group">
+          <div class="input-label">Location</div>
+          <div class="input-field">
+            <span class="input-value">Clareview Recreation Centre</span>
+            <i class="ti ti-map-pin" style="font-size:13px; color:#52B788;" aria-hidden="true"></i>
+          </div>
+        </div>
+
+        <!-- Location note -->
+        <div style="background:#122318; border-radius:10px; padding:8px 12px; display:flex; gap:8px; align-items:flex-start;">
+          <i class="ti ti-info-circle" style="font-size:13px; color:#52B788; margin-top:1px; flex-shrink:0;" aria-hidden="true"></i>
+          <span style="font-size:10px; color:#3D5A47; line-height:1.5;">Enter a plain text location — a neighbourhood, venue name, or address. No maps in v1.</span>
+        </div>
+
+        <button class="btn-primary">Continue</button>
+        <div style="font-size:11px; color:#3D5A47; text-align:center; cursor:pointer;">Go back</div>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><i class="ti ti-home" style="font-size:18px;" aria-hidden="true"></i><span>Feed</span></div>
+        <div class="tab"><i class="ti ti-search" style="font-size:18px;" aria-hidden="true"></i><span>Explore</span></div>
+        <div class="tab"><i class="ti ti-calendar-event" style="font-size:18px;" aria-hidden="true"></i><span>My plans</span></div>
+        <div class="tab"><i class="ti ti-user" style="font-size:18px;" aria-hidden="true"></i><span>Profile</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 3 — Group Size -->
+  <div>
+    <div class="step-label">Step 3 — Group size</div>
+    <div class="phone">
+      <div class="statusbar"><span>9:41</span><span>●●● WiFi ■</span></div>
+      <div class="topbar">
+        <div style="width:28px; height:28px; background:#122318; border-radius:8px; display:flex; align-items:center; justify-content:center; border:0.5px solid #1B4332;">
+          <i class="ti ti-arrow-left" style="font-size:14px; color:#52B788;" aria-hidden="true"></i>
+        </div>
+        <div class="topbar-title">Group size</div>
+        <div style="font-size:11px; color:#3D5A47;">3 of 3</div>
+      </div>
+      <div class="screen">
+        <div class="progress">
+          <div class="prog-dot" style="background:#2D6A4F;"></div>
+          <div class="prog-dot" style="background:#2D6A4F;"></div>
+          <div class="prog-dot" style="background:#52B788;"></div>
+        </div>
+
+        <!-- Expected attendance -->
+        <div class="input-group">
+          <div class="input-label">How many people are expected?</div>
+          <div style="display:flex; gap:6px;">
+            <div class="size-btn size-inactive">2–5</div>
+            <div class="size-btn size-inactive">6–20</div>
+            <div class="size-btn size-inactive">21–100</div>
+            <div class="size-btn size-active">100+</div>
+          </div>
+          <div style="font-size:10px; color:#3D5A47; margin-top:2px;">This determines how groups are formed under your activity</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- For tiny — max members -->
+        <div class="input-group">
+          <div class="input-label">Max group size</div>
+          <div class="size-row">
+            <div class="size-btn size-inactive">2</div>
+            <div class="size-btn size-inactive">3</div>
+            <div class="size-btn size-inactive">4</div>
+            <div class="size-btn size-active">5</div>
+          </div>
+          <div style="font-size:10px; color:#3D5A47; margin-top:2px;">Max 5 people per group</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Summary -->
+        <div style="background:#122318; border-radius:12px; padding:12px; display:flex; flex-direction:column; gap:8px; border:0.5px solid #1B4332;">
+          <div style="font-size:11px; color:#52B788; font-weight:500;">Activity summary</div>
+          <div style="display:flex; justify-content:space-between; font-size:11px;">
+            <span style="color:#3D5A47;">Title</span>
+            <span style="color:#B7E4C7;">Pickup Basketball @ Clareview</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size:11px;">
+            <span style="color:#3D5A47;">When</span>
+            <span style="color:#B7E4C7;">Tonight, 7:00 PM</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size:11px;">
+            <span style="color:#3D5A47;">Where</span>
+            <span style="color:#B7E4C7;">Clareview Rec</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size:11px;">
+            <span style="color:#3D5A47;">Group</span>
+            <span style="color:#B7E4C7;">Up to 5 people</span>
+          </div>
+        </div>
+
+        <button class="btn-primary">Post activity</button>
+        <div style="font-size:11px; color:#3D5A47; text-align:center; cursor:pointer;">Go back</div>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><i class="ti ti-home" style="font-size:18px;" aria-hidden="true"></i><span>Feed</span></div>
+        <div class="tab"><i class="ti ti-search" style="font-size:18px;" aria-hidden="true"></i><span>Explore</span></div>
+        <div class="tab"><i class="ti ti-calendar-event" style="font-size:18px;" aria-hidden="true"></i><span>My plans</span></div>
+        <div class="tab"><i class="ti ti-user" style="font-size:18px;" aria-hidden="true"></i><span>Profile</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex; gap:8px; width:270px;">
+    <button style="flex:1; padding:10px; border-radius:10px; font-size:12px; font-weight:500; background:#122318; color:#52B788; border:0.5px solid #1B4332; cursor:pointer;" onclick="sendPrompt('Tweak the create activity screens.')">Tweak</button>
+    <button style="flex:1; padding:10px; border-radius:10px; font-size:12px; font-weight:500; background:#2D6A4F; color:#D8F3DC; border:none; cursor:pointer;" onclick="sendPrompt('Create activity screens approved. Lets build the profile screen next.')">Approve — next</button>
+  </div>
+
+</div>

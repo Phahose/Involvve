@@ -1,0 +1,221 @@
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font-sans); }
+.wrap { padding: 1rem 0; display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+.step-label { font-size: 11px; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500; margin-bottom: 8px; text-align: center; }
+.phone { width: 270px; background: #0A1A12; border-radius: 36px; border: 0.5px solid #1B4332; overflow: hidden; display: flex; flex-direction: column; }
+.statusbar { padding: 10px 18px 4px; display: flex; justify-content: space-between; font-size: 9px; color: #52B788; font-weight: 500; }
+.topbar { padding: 10px 16px 8px; display: flex; justify-content: space-between; align-items: center; }
+.topbar-left { display: flex; flex-direction: column; gap: 1px; }
+.topbar-greeting { font-size: 11px; color: #52B788; }
+.topbar-title { font-size: 18px; font-weight: 500; color: #F0FAF3; letter-spacing: -0.3px; }
+.topbar-right { display: flex; gap: 8px; align-items: center; }
+.icon-btn { width: 32px; height: 32px; background: #122318; border-radius: 10px; display: flex; align-items: center; justify-content: center; border: 0.5px solid #1B4332; }
+.avatar-sm { width: 32px; height: 32px; border-radius: 50%; background: #2D6A4F; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; color: #D8F3DC; border: 1.5px solid #52B788; }
+.filter-row { padding: 0 14px 10px; display: flex; gap: 6px; overflow: hidden; }
+.filter-pill { padding: 5px 12px; border-radius: 20px; font-size: 10px; font-weight: 500; white-space: nowrap; flex-shrink: 0; }
+.filter-active { background: #2D6A4F; color: #D8F3DC; }
+.filter-inactive { background: #122318; color: #52B788; border: 0.5px solid #1B4332; }
+.feed { flex: 1; display: flex; flex-direction: column; gap: 10px; padding: 0 12px 12px; overflow: hidden; }
+
+/* Activity card */
+.card { background: #122318; border-radius: 16px; overflow: hidden; border: 0.5px solid #1B4332; }
+.card-media { height: 130px; background: #1B4332; position: relative; display: flex; align-items: flex-end; padding: 10px; }
+.card-media-overlay { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10,26,18,0.85) 0%, transparent 60%); }
+.card-category { position: relative; z-index: 1; padding: 3px 10px; border-radius: 20px; font-size: 9px; font-weight: 500; }
+.card-urgent { position: absolute; top: 10px; right: 10px; background: #7F1D1D; color: #FCA5A5; padding: 3px 8px; border-radius: 20px; font-size: 9px; font-weight: 500; z-index: 1; }
+.card-body { padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; }
+.card-title { font-size: 14px; font-weight: 500; color: #F0FAF3; }
+.card-meta { display: flex; gap: 8px; align-items: center; font-size: 11px; color: #52B788; }
+.card-dot { width: 3px; height: 3px; background: #2D6A4F; border-radius: 50%; }
+.card-footer { display: flex; justify-content: space-between; align-items: center; }
+.avatars { display: flex; }
+.av { width: 20px; height: 20px; border-radius: 50%; margin-right: -6px; border: 1.5px solid #122318; font-size: 7px; display: flex; align-items: center; justify-content: center; font-weight: 500; }
+.av1 { background: #2D6A4F; color: #D8F3DC; }
+.av2 { background: #52B788; color: #0A1A12; }
+.av3 { background: #1B4332; color: #B7E4C7; }
+.spots { font-size: 10px; color: #B7E4C7; margin-left: 10px; }
+.join-btn { padding: 6px 14px; border-radius: 8px; font-size: 11px; font-weight: 500; border: none; cursor: pointer; }
+.join-open { background: #2D6A4F; color: #D8F3DC; }
+.join-event { background: #122318; color: #52B788; border: 0.5px solid #2D6A4F; }
+
+/* Large event card */
+.event-card { background: #0E1F16; border-radius: 16px; overflow: hidden; border: 0.5px solid #2D6A4F; }
+.event-media { height: 110px; background: #1B4332; position: relative; display: flex; align-items: flex-end; padding: 10px; }
+.event-badge { position: absolute; top: 10px; left: 10px; background: #2D6A4F; color: #D8F3DC; padding: 3px 10px; border-radius: 20px; font-size: 9px; font-weight: 500; z-index: 1; }
+.event-body { padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; }
+.event-stats { display: flex; gap: 12px; }
+.stat { display: flex; flex-direction: column; gap: 1px; }
+.stat-num { font-size: 13px; font-weight: 500; color: #F0FAF3; }
+.stat-label { font-size: 9px; color: #52B788; }
+
+/* Tab bar */
+.tabbar { padding: 8px 0 10px; display: flex; justify-content: space-around; border-top: 0.5px solid #122318; background: #0A1A12; }
+.tab { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 9px; }
+.tab-active { color: #52B788; }
+.tab-inactive { color: #1B4332; }
+.fab { position: absolute; bottom: 56px; right: 16px; width: 44px; height: 44px; background: #2D6A4F; border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(45,106,79,0.4); }
+.phone-inner { position: relative; flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+</style>
+
+<div class="wrap">
+  <div class="step-label">Activity feed</div>
+  <div class="phone">
+    <div class="statusbar"><span>9:41</span><span>●●● WiFi ■</span></div>
+
+    <!-- Top bar -->
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="topbar-greeting">Good evening</div>
+        <div class="topbar-title">What's happening</div>
+      </div>
+      <div class="topbar-right">
+        <div class="icon-btn">
+          <i class="ti ti-bell" style="font-size:15px; color:#52B788;" aria-hidden="true"></i>
+        </div>
+        <div class="avatar-sm">EK</div>
+      </div>
+    </div>
+
+    <!-- Category filters -->
+    <div class="filter-row">
+      <div class="filter-pill filter-active">All</div>
+      <div class="filter-pill filter-inactive">Sports</div>
+      <div class="filter-pill filter-inactive">Food</div>
+      <div class="filter-pill filter-inactive">Nightlife</div>
+      <div class="filter-pill filter-inactive">Outdoors</div>
+    </div>
+
+    <!-- Feed -->
+    <div class="phone-inner">
+      <div class="feed">
+
+        <!-- Tiny activity card -->
+        <div class="card">
+          <div class="card-media" style="background: #0D2B1A;">
+            <div class="card-media-overlay"></div>
+            <div class="card-category" style="background:#1B4332; color:#52B788; position:relative; z-index:1;">Sports & Fitness</div>
+            <div class="card-urgent">1 spot left</div>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Pickup Basketball @ Clareview</div>
+            <div class="card-meta">
+              <i class="ti ti-clock" style="font-size:11px;" aria-hidden="true"></i>
+              <span>Tonight, 7:00 PM</span>
+              <div class="card-dot"></div>
+              <i class="ti ti-map-pin" style="font-size:11px;" aria-hidden="true"></i>
+              <span>Clareview Rec</span>
+            </div>
+            <div class="card-footer">
+              <div style="display:flex; align-items:center;">
+                <div class="avatars">
+                  <div class="av av1">AK</div>
+                  <div class="av av2">JL</div>
+                  <div class="av av3">+1</div>
+                </div>
+                <span class="spots">3 going</span>
+              </div>
+              <button class="join-btn join-open">Join</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Large event card -->
+        <div class="event-card">
+          <div class="event-media" style="background:#0E2318;">
+            <div class="card-media-overlay"></div>
+            <div class="event-badge">Large Event</div>
+            <div class="card-category" style="background:#1B4332; color:#52B788; position:relative; z-index:1;">Music</div>
+          </div>
+          <div class="event-body">
+            <div class="card-title">Bryson Tiller — Rogers Place</div>
+            <div class="card-meta">
+              <i class="ti ti-calendar" style="font-size:11px;" aria-hidden="true"></i>
+              <span>Sat Jun 14, 8:00 PM</span>
+              <div class="card-dot"></div>
+              <i class="ti ti-map-pin" style="font-size:11px;" aria-hidden="true"></i>
+              <span>Downtown</span>
+            </div>
+            <div class="event-stats">
+              <div class="stat">
+                <div class="stat-num">847</div>
+                <div class="stat-label">Interested</div>
+              </div>
+              <div class="stat">
+                <div class="stat-num">23</div>
+                <div class="stat-label">Groups forming</div>
+              </div>
+              <div class="stat">
+                <div class="stat-num">4</div>
+                <div class="stat-label">Spots open</div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div style="display:flex; align-items:center;">
+                <div class="avatars">
+                  <div class="av av1">MR</div>
+                  <div class="av av2">TK</div>
+                  <div class="av av3">+21</div>
+                </div>
+              </div>
+              <button class="join-btn join-event">View groups</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Regular activity card -->
+        <div class="card">
+          <div class="card-body" style="padding-top:12px;">
+            <div class="card-title">Morning Coffee Run</div>
+            <div class="card-meta">
+              <i class="ti ti-clock" style="font-size:11px;" aria-hidden="true"></i>
+              <span>Tomorrow, 8:30 AM</span>
+              <div class="card-dot"></div>
+              <i class="ti ti-map-pin" style="font-size:11px;" aria-hidden="true"></i>
+              <span>Transcend Coffee</span>
+            </div>
+            <div class="card-footer">
+              <div style="display:flex; align-items:center;">
+                <div class="avatars">
+                  <div class="av av2">SL</div>
+                </div>
+                <span class="spots">1 going · 4 spots left</span>
+              </div>
+              <button class="join-btn join-open">Join</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- FAB -->
+      <div class="fab">
+        <i class="ti ti-plus" style="font-size:20px; color:#D8F3DC;" aria-hidden="true"></i>
+      </div>
+    </div>
+
+    <!-- Tab bar -->
+    <div class="tabbar">
+      <div class="tab tab-active">
+        <i class="ti ti-home" style="font-size:18px;" aria-hidden="true"></i>
+        <span>Feed</span>
+      </div>
+      <div class="tab tab-inactive">
+        <i class="ti ti-search" style="font-size:18px;" aria-hidden="true"></i>
+        <span>Explore</span>
+      </div>
+      <div class="tab tab-inactive">
+        <i class="ti ti-calendar-event" style="font-size:18px;" aria-hidden="true"></i>
+        <span>My plans</span>
+      </div>
+      <div class="tab tab-inactive">
+        <i class="ti ti-user" style="font-size:18px;" aria-hidden="true"></i>
+        <span>Profile</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex; gap:8px; width:270px;">
+    <button style="flex:1; padding:10px; border-radius:10px; font-size:12px; font-weight:500; background:#122318; color:#52B788; border:0.5px solid #1B4332; cursor:pointer;" onclick="sendPrompt('Tweak the feed screen.')">Tweak</button>
+    <button style="flex:1; padding:10px; border-radius:10px; font-size:12px; font-weight:500; background:#2D6A4F; color:#D8F3DC; border:none; cursor:pointer;" onclick="sendPrompt('Feed screen approved. Lets build the activity detail screen next.')">Approve — next</button>
+  </div>
+</div>
